@@ -35,9 +35,9 @@ func main() {
 			}
 		}
 	}
+	// grab_url("AAAS", &wg, throttle)
 	wg.Wait()
 
-	// grab_url("AIF2")
 	defer DB.Close()
 }
 
@@ -62,6 +62,13 @@ func grab_url(url string, wg *sync.WaitGroup, throttle chan string) {
 }
 
 func db_connection() {
+	/* "CREATE TABLE `links` (
+	   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	   `uri` varchar(10) DEFAULT '',
+	   `code` smallint(1) DEFAULT NULL,
+	   PRIMARY KEY (`id`)
+	 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;" */
+
 	db, err := sql.Open("mysql", "root:12345@/graber")
 	if err != nil {
 		log.Fatalf("Error opening database: %v", err)
