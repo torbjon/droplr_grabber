@@ -24,7 +24,6 @@ class DroplrGraber
 
   def grab(link)
     response = Net::HTTP.get_response(URI("http://d.pr/i/#{link}"))
-    # response = Net::HTTP.get('http://d.pr', "/i/#{link}")
     response.code == '200'
   end
 
